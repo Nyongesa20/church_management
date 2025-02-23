@@ -18,7 +18,7 @@
     <body class="font-sans antialiased">
         <div class="flex min-h-screen bg-gray-100">
             @include('layouts.sidebar')
-
+            
             <div class="flex-1">
                 @include('layouts.navigation')
 
@@ -33,6 +33,9 @@
 
                 <!-- Page Content -->
                 <main>
+                <div class="w-64 h-full">
+                @include('layouts.sidebars.admin')
+            </div>
                     @yield('content')
                 </main>
             </div>
