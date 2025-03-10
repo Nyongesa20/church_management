@@ -13,10 +13,10 @@
         <!-- User Panel -->
         <div class="user-panel d-flex">
             <div class="image">
-                <img src="{{ asset('path/to/user.jpg') }}" class="img-circle elevation-2" alt="User Image">
+                <img src="<?php echo e(asset('path/to/user.jpg')); ?>" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+                <a href="#" class="d-block"><?php echo e(Auth::user()->name); ?></a>
             </div>
         </div>
         
@@ -26,16 +26,34 @@
         <nav class="mt-2">
         <ul class="nav flex-column">
                 <li class="nav-item">
-                    <x-nav-link  class="nav-link" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <?php if (isset($component)) { $__componentOriginalc295f12dca9d42f28a259237a5724830 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalc295f12dca9d42f28a259237a5724830 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.nav-link','data' => ['class' => 'nav-link','href' => route('dashboard'),'active' => request()->routeIs('dashboard')]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('nav-link'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'nav-link','href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('dashboard')),'active' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('dashboard'))]); ?>
                     <i class="fas fa-tachometer-alt"></i>
                     <span class="menu-text">Dashboard</span>
-                    </x-nav-link>
+                     <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalc295f12dca9d42f28a259237a5724830)): ?>
+<?php $attributes = $__attributesOriginalc295f12dca9d42f28a259237a5724830; ?>
+<?php unset($__attributesOriginalc295f12dca9d42f28a259237a5724830); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc295f12dca9d42f28a259237a5724830)): ?>
+<?php $component = $__componentOriginalc295f12dca9d42f28a259237a5724830; ?>
+<?php unset($__componentOriginalc295f12dca9d42f28a259237a5724830); ?>
+<?php endif; ?>
                 </li>
             </ul>
         </nav>
             <ul class="nav flex-column">
                 
-                @if(Auth::user()->role == 'Admin')
+                <?php if(Auth::user()->role == 'Admin'): ?>
                 <li class="nav-header">Manage</li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
@@ -44,7 +62,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.members') }}" class="nav-link">
+                    <a href="<?php echo e(route('admin.members')); ?>" class="nav-link">
                         <i class="fas fa-users"></i>
                         <span class="menu-text">Members</span>
                     </a>
@@ -65,7 +83,7 @@
                 </li>
 
 
-                @elseif(Auth::user()->role == 'Pastor')
+                <?php elseif(Auth::user()->role == 'Pastor'): ?>
                 <li class="nav-header">Manage</li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
@@ -74,7 +92,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.members') }}" class="nav-link">
+                    <a href="<?php echo e(route('admin.members')); ?>" class="nav-link">
                         <i class="fas fa-users"></i>
                         <span class="menu-text">Members</span>
                     </a>
@@ -95,7 +113,7 @@
                 </li>
 
 
-                @elseif(Auth::user()->role == 'Member')
+                <?php elseif(Auth::user()->role == 'Member'): ?>
                 <li class="nav-header">Manage</li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
@@ -104,7 +122,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.members') }}" class="nav-link">
+                    <a href="<?php echo e(route('admin.members')); ?>" class="nav-link">
                         <i class="fas fa-users"></i>
                         <span class="menu-text">Members</span>
                     </a>
@@ -123,7 +141,7 @@
                         <span class="menu-text">Sermons</span>
                     </a>
                 </li>
-                @endif
+                <?php endif; ?>
             </ul>
         </nav>
     </div>
@@ -233,3 +251,4 @@ menuToggle.addEventListener('click', () => {
 });
 
 </script>
+<?php /**PATH C:\Users\Meshack\Desktop\church_management\resources\views/layouts/sidebar.blade.php ENDPATH**/ ?>
