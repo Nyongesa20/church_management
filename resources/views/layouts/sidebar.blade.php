@@ -1,51 +1,47 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4" x-data="{ sidebarOpen: window.innerWidth > 768 }" :class="{'collapsed': !sidebarOpen, 'expanded': sidebarOpen}" @resize.window="sidebarOpen = window.innerWidth > 768 ? true : sidebarOpen">
+    <!-- Top Section with Menu Toggle Button -->
+    <div class="top-section">
+        <!-- This button appears only on small screens -->
+        <button class="menu-toggle" @click="sidebarOpen = !sidebarOpen">
+            <i class="fas" :class="sidebarOpen ? 'fa-times' : 'fa-bars'"></i>
+        </button>
+    </div>
 
-
-
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Menu Toggle Button -->
-   
-
-    <!-- Sidebar -->
+    <!-- Sidebar Content -->
     <div class="sidebar">
-    <button class="menu-toggle" id="menuToggle">
-    <i class="fas fa-angle-double-right"></i>
-</button>
         <!-- User Panel -->
-        <div class="user-panel d-flex">
-            <div class="image">
-                <img src="{{ asset('path/to/user.jpg') }}" class="img-circle elevation-2" alt="User Image">
-            </div>
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="user-avatar mr-3">
+                        <img src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}&background=random" 
+                             alt="Profile" 
+                             class="profile-image">
+                    </div>
             <div class="info">
                 <a href="#" class="d-block">{{ Auth::user()->name }}</a>
             </div>
         </div>
-        
 
         <!-- Navigation Links -->
-        <nav>
         <nav class="mt-2">
-        <ul class="nav flex-column">
+            <ul class="nav nav-pills nav-sidebar flex-column">
                 <li class="nav-item">
-                    <x-nav-link  class="nav-link" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                    <i class="fas fa-tachometer-alt"></i>
-                    <span class="menu-text">Dashboard</span>
+                    <x-nav-link class="nav-link" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <span class="menu-text">Dashboard</span>
                     </x-nav-link>
                 </li>
-            </ul>
-        </nav>
-            <ul class="nav flex-column">
                 
                 @if(Auth::user()->role == 'Admin')
                 <li class="nav-header">Manage</li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="fas fa-building"></i>
-                        <span class="menu-text">Assemblies</span>
+                        <i class="nav-icon fas fa-building"></i>
+                        <span class="menu-text">Branches</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('admin.members') }}" class="nav-link">
-                        <i class="fas fa-users"></i>
+                        <i class="nav-icon fas fa-users"></i>
                         <span class="menu-text">Members</span>
                     </a>
                 </li>
@@ -53,74 +49,72 @@
                 <li class="nav-header">Reports</li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="fas fa-chart-line"></i>
+                        <i class="nav-icon fas fa-chart-line"></i>
                         <span class="menu-text">Reports</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="fas fa-book"></i>
+                        <i class="nav-icon fas fa-book"></i>
                         <span class="menu-text">Sermons</span>
                     </a>
                 </li>
-
-
+                
                 @elseif(Auth::user()->role == 'Pastor')
-                <li class="nav-header">Manage</li>
+                <li class="nav-header">Pastor</li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="fas fa-building"></i>
-                        <span class="menu-text">Assemblies</span>
+                        <i class="nav-icon fas fa-building"></i>
+                        <span class="menu-text">Pastor</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('admin.members') }}" class="nav-link">
-                        <i class="fas fa-users"></i>
-                        <span class="menu-text">Members</span>
+                        <i class="nav-icon fas fa-users"></i>
+                        <span class="menu-text">Pastor</span>
                     </a>
                 </li>
 
-                <li class="nav-header">Reports</li>
+                <li class="nav-header">Pastor</li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="fas fa-chart-line"></i>
-                        <span class="menu-text">Reports</span>
+                        <i class="nav-icon fas fa-chart-line"></i>
+                        <span class="menu-text">Pastor</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="fas fa-book"></i>
-                        <span class="menu-text">Sermons</span>
+                        <i class="nav-icon fas fa-book"></i>
+                        <span class="menu-text">Pastor</span>
                     </a>
                 </li>
-
-
+                
                 @elseif(Auth::user()->role == 'Member')
                 <li class="nav-header">Manage</li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="fas fa-building"></i>
-                        <span class="menu-text">Assemblies</span>
+                        <i class="nav-icon fas fa-building"></i>
+                        <span class="menu-text">Member</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('admin.members') }}" class="nav-link">
-                        <i class="fas fa-users"></i>
-                        <span class="menu-text">Members</span>
+                        <i class="nav-icon fas fa-users"></i>
+                        <span class="menu-text">Member</span>
                     </a>
                 </li>
 
                 <li class="nav-header">Reports</li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="fas fa-chart-line"></i>
-                        <span class="menu-text">Reports</span>
+                        <i class="nav-icon fas fa-chart-line"></i>
+                        <span class="menu-text">Member</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="fas fa-book"></i>
-                        <span class="menu-text">Sermons</span>
+                        <i class="nav-icon fas fa-book"></i>
+                        <span class="menu-text">Member</span>
                     </a>
                 </li>
                 @endif
@@ -128,108 +122,190 @@
         </nav>
     </div>
 </aside>
+
 <style>
     /* Basic Sidebar Styles */
-    .sidebar {
-        width: 200px;
-        transition: width 0.3s ease;
-        background-color:grey;
+    .main-sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
         height: 100vh;
+        width: 250px;
+        transition: all 0.3s ease;
+        z-index: 1000;
+        background-color: #343a40; /* Dark background for the sidebar */
     }
 
-    .sidebar.collapsed {
+    .main-sidebar.collapsed {
         width: 70px;
     }
 
-    /* Hide User Info & Menu Headers on Collapse */
-    .sidebar.collapsed .user-panel .info,
-    .sidebar.collapsed .user-panel .image,
-    .sidebar.collapsed .nav-header {
-        display: none;
+    .main-sidebar.expanded {
+        width: 250px;
+    }
+
+    /* Top Section with Toggle Button */
+    .top-section {
+        height: 8vh;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
     }
 
     .menu-toggle {
-    position: fixed; /* Fixed to always stay visible */
-    top: 0px;
-    left: 10px;
-    z-index: 1000; /* Ensure it's above the sidebar */
-    background: #007bff;
-    border: none;
-    color: #fff;
-    font-size: 1.5rem;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-
-    .menu-text {
-        display: inline;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        display: none; /* Hidden by default on large screens */
     }
 
-    .sidebar.collapsed .menu-text {
+    .menu-toggle i {
+        color: grey;
+    }
+
+    /* User Panel Styling */
+    .user-panel {
+        padding: 10px 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: 15px;
+    }
+
+    .user-panel .image {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+    }
+
+    .user-panel .image img {
+        width: 100%;
+        height: auto;
+        border-radius: 50%;
+    }
+
+    .user-panel .info a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    /* Navigation Styling */
+    .nav-header {
+        color: #adb5bd;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        padding: 12px 15px 5px;
+        font-weight: 700;
+    }
+
+    .nav-link {
+        padding: 10px 15px;
+        color: #c2c7d0;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+        color: #fff;
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-link i {
+        margin-right: 10px;
+        font-size: 1.1rem;
+        width: 20px;
+        text-align: center;
+    }
+
+    /* Collapsed State Styling */
+    .main-sidebar.collapsed .menu-text,
+    .main-sidebar.collapsed .user-panel .info,
+    .main-sidebar.collapsed .nav-header {
         display: none;
     }
 
-    .sidebar.collapsed .nav-link {
+    .main-sidebar.collapsed .nav-link {
         text-align: center;
+        justify-content: center;
+        padding: 12px 5px;
+    }
+
+    .main-sidebar.collapsed .nav-link i {
+        margin-right: 0;
     }
 
     /* Responsive Behavior */
     @media (max-width: 768px) {
-        .sidebar {
-            width: 50px;
+        .main-sidebar {
+            width: 50px; /* Default collapsed state on mobile */
         }
 
-        .sidebar .user-panel .info,
-        .sidebar .user-panel .image,
-        .nav-header {
-            display: none;
+        .main-sidebar.expanded {
+            width: 200px;
         }
 
-        .menu-text {
-            display: none;
+        .menu-toggle {
+            display: block; /* Show toggle button on small screens */
         }
 
-        .nav-link {
-            text-align: center;
-        }
-    }
-
-    /* Show User Info and Categories on Expand */
-    @media (max-width: 768px) {
-        .sidebar.expanded {
-            width: 140px;
+        .main-sidebar .menu-text,
+        .main-sidebar .user-panel .info,
+        .main-sidebar .nav-header {
+            display: none; /* Hide by default on small screens */
         }
 
-        .sidebar.expanded .user-panel .info,
-        .sidebar.expanded .user-panel .image,
-        .sidebar.expanded .nav-header {
+        .main-sidebar .nav-link {
+            justify-content: center;
+            padding: 12px 5px;
+        }
+
+        .main-sidebar .nav-link i {
+            margin-right: 0;
+        }
+
+        /* When expanded on mobile */
+        .main-sidebar.expanded .menu-text,
+        .main-sidebar.expanded .user-panel .info,
+        .main-sidebar.expanded .nav-header {
             display: block;
         }
 
-        .sidebar.expanded .menu-text {
-            display: inline;
+        .main-sidebar.expanded .nav-link {
+            justify-content: flex-start;
+            padding: 10px 15px;
         }
 
-        .sidebar.expanded .nav-link {
-            text-align: left;
+        .main-sidebar.expanded .nav-link i {
+            margin-right: 10px;
         }
     }
+
+    /* Main Content Adjustment */
+    .content-wrapper {
+        margin-left: 250px;
+        transition: margin-left 0.3s ease;
+        padding: 20px;
+    }
+
+    .main-sidebar.collapsed ~ .content-wrapper {
+        margin-left: 70px;
+    }
+
+    @media (max-width: 768px) {
+        .content-wrapper {
+            margin-left: 60px;
+        }
+
+        .main-sidebar.expanded ~ .content-wrapper {
+            margin-left: 200px;
+        }
+    }
+
+    /* Utility for Alpine.js */
+    [x-cloak] {
+        display: none !important;
+    }
 </style>
-
-<script>
-    const menuToggle = document.getElementById('menuToggle');
-const sidebar = document.querySelector('.sidebar');
-
-menuToggle.addEventListener('click', () => {
-    sidebar.classList.toggle('collapsed');
-    sidebar.classList.toggle('expanded');
-
-    // Update the button icon
-    menuToggle.innerHTML = sidebar.classList.contains('collapsed') 
-        ? '<i class="fas fa-angle-double-right"></i>' 
-        : '<i class="fas fa-angle-double-left"></i>';
-});
-
-</script>

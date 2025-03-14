@@ -6,18 +6,19 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta http-equiv="Cache-Control" content="no-store,no-cache,must-revalidate">
         <meta http-equiv="Pragma" content="no-cache">
-        <meta http-equiv="Expires" content="0>
+        <meta http-equiv="Expires" content="0">
 
         <!-- Fonts -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <title>Church Management Dashboard</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -31,17 +32,16 @@
                     </div>
                 </header>
             @endisset
-           
 
             <!-- Page Content -->
             <main>
-                <div style="display:flex">
-                    <div >@include('layouts.sidebar')</div>
-                    <div>
-                        @yield('content')</div>
+                <div class="d-flex">
+                    <div>@include('layouts.sidebar')</div>
+                    <div class="content-wrapper flex-grow-1">
+                        @yield('content')
+                    </div>
                 </div>
                 @include('layouts.footer')
-
             </main>
         </div>
     </body>
